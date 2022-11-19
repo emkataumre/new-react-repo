@@ -43,4 +43,38 @@ header nav input {
 
 #logo__img {
   width: 6rem;
+}
+
+.post {
+  background-color: #fff;
+  max-width: 50rem;
+  border: 1px solid #808080;
+  margin-bottom: 5rem;
+}
+.post:first-child {
+  margin-top: 3rem;
+}
+.post img {
+  border-bottom: 1px solid #808080;
+  border-top: 1px solid #808080;
+  width: 100%;
+  -o-object-fit: contain;
+     object-fit: contain;
+}
+.post h4 {
+  font-weight: normal;
+}
+.post div {
+  display: flex;
+  justify-content: default;
+  align-items: center;
+  flex-direction: row;
+  padding: 0.35rem 0.5rem;
+}
+.post div div {
+  margin-right: 0.5rem;
+}
+
+.post__caption {
+  margin-left: 0.5rem;
 }/*# sourceMappingURL=index.css.map */

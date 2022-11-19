@@ -1,0 +1,30 @@
+.post { 
+    background-color: #fff;
+    max-width: 50rem;
+    border: 1px solid $grey;
+    margin-bottom: 5rem;
+    &:first-child {
+        margin-top: 3rem;
+    }
+    img {
+        border-bottom: 1px solid $grey;
+        border-top: 1px solid $grey;
+        width: 100%;
+        object-fit: contain;
+    }
+    h4 {
+        font-weight: normal;
+    }
+    div {
+        @include flex (default,center,row);
+         padding: .35rem .5rem;
+        div {
+            margin-right: .5rem;
+        }
+    }
+}
+
+
+.post__caption {
+    margin-left: .5rem;
+}
