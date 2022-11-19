@@ -1,0 +1,36 @@
+
+header { 
+    background-color: #fafafa;
+    border-bottom: 1px solid $grey;
+    top: 0;
+    position: sticky;
+    nav { 
+        @include flex (space-between, center, row);
+        ul {
+            @include flex (space-around, center, row);
+            list-style: none;
+            li a img {
+                width: 1.5rem;
+                margin-right: 1.5rem;
+            }
+            li a:hover,
+            li a div:hover {
+                cursor: pointer;
+            }
+        }
+        input { 
+            width: 20%;
+            padding-left: .5rem;
+            border: none;
+            height: 1.3rem;
+            border-radius: .25vh;
+            border: 1px solid $grey;
+        }
+    }
+    
+}
+
+#logo__img {
+ width: 6rem;
+}
+
