@@ -19,6 +19,9 @@ $grey: #808080;
     flex-direction: $direction;
 }
 
+#app-container {
+    @include flex (center, center, column)
+}
 
 @import 'header.scss';
 @import 'post.scss';

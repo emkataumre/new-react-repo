@@ -4,6 +4,13 @@
   box-sizing: border-box;
 }
 
+#app-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
 header {
   background-color: #fafafa;
   border-bottom: 1px solid #808080;
