@@ -2,21 +2,19 @@ import React, { useEffect, useState } from "react";
 import './css/index.css';
 import {Header} from './components/Header';
 import {Post} from './components/Posts';
+import {db} from './firebase';
 function App() {
 
-  const [posts, setPosts] = useState([
-    {
-    username: "emkataumre",
-    caption:"new post",
-    imageUrl: "https://assets1.ignimgs.com/2018/06/21/hollowknight-1280-1529623462572_160w.jpg?width=1280"
-    },
+  const [posts, setPosts] = useState([]);
 
-    {
-    username: "rogachevumre",
-    caption: "picture",
-    imageUrl: "https://d1fdloi71mui9q.cloudfront.net/6C9NH1a2Q42IPPPd7iSm_0UmAJ3pr4APt97Gg"
-    }
-  ]);
+  useEffect(() => {
+  db.collection('posts') //'posts' here refers to my collection on firebase that is called 'posts'
+  .onSnapshot(snapshot => {
+    setPosts(snapshot.docs.map(doc => doc.data()));
+  }) //onSnapshot will fire every time a change happens in the 'posts' collection
+  
+  }, []); //Currently runs once on refresh
+
   return (
     <div className="App">
       <Header/>
