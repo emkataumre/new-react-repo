@@ -8,6 +8,9 @@ import {auth} from './../firebase.js';
 
 function BasicModal() {
 
+    const signUp = (event) => {
+    }
+
     const style = {
         position: 'absolute',
         top: '50%',
@@ -23,6 +26,10 @@ function BasicModal() {
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
+    const [username, setUsername] = useState('');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    
 
     return (
         <div>
@@ -33,7 +40,6 @@ function BasicModal() {
             onClose={handleClose}
           >
             <Box sx={style}>
-              <Typography id="modal-modal-title" variant="h6" component="h2">
           <center>
             <img src={require('../img/logo.png')}>
             </img>
@@ -43,26 +49,28 @@ function BasicModal() {
           className="outlined-basic" 
           label="Username" 
           type="text"
-          variant="outlined" />
+          variant="outlined"
+          onChange={(e) => setUsername(e.target.value)}
+           />
           <TextField 
           className="outlined-basic" 
           label="Email" 
           type="email"
-          variant="outlined" />
+          variant="outlined"
+          onChange={(e) => setEmail(e.target.value)}
+           />
           <TextField
             id="outlined-password-input"
             label="Password"
             type="password"
             autoComplete="current-password"
+            onChange={(e) => setPassword(e.target.value)}
           />
           </center>
           <center>
-          <Button type="submit">Sign up</Button>
+          <Button onClick={signUp} type="submit">Sign up</Button>
           </center>
-              </Typography>
-              <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-              </Typography>
-            </Box>
+            </Box> 
           </Modal>
         </form>
       </div>
