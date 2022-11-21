@@ -12,6 +12,11 @@ function BasicModal() {
         
         auth
         .createUserWithEmailAndPassword(email, password) //email and password from the state
+        .then((authUser) => {
+            authUser.user.updateProfile({
+                displayName: username,
+            })
+        })
         .catch((error) => alert(error.message)) //if there is an error, catch it and show the error message in an alert
     }
 
@@ -41,15 +46,6 @@ function BasicModal() {
                 //user logged in
                 console.log(authUser);
                 setUser(authUser);
-                
-                if(authUser.displayName) {
-                    //if user already has a displayname, dont update it
-                } else {
-                    //if they are a new user
-                    return authUser.updateProfile({
-                        displayName: username,
-                    });
-                }
             } else {
                 //user logged out 
                 setUser(null);
