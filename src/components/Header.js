@@ -13,7 +13,7 @@ function BasicModal() {
         auth
         .createUserWithEmailAndPassword(email, password) //email and password from the state
         .then((authUser) => {
-            authUser.user.updateProfile({
+          return authUser.user.updateProfile({
                 displayName: username,
             })
         })
