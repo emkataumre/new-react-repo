@@ -1,7 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import TextField from '@mui/material/TextField';
 import {auth} from './../firebase.js';
@@ -9,6 +8,11 @@ import {auth} from './../firebase.js';
 function BasicModal() {
 
     const signUp = (event) => {
+        event.preventDefault(); //Dont refresh on button press
+        
+        auth
+        .createUserWithEmailAndPassword(email, password) //email and password from the state
+        .catch((error) => alert(error.message)) //if there is an error, catch it and show the error message in an alert
     }
 
     const style = {
@@ -50,6 +54,7 @@ function BasicModal() {
           label="Username" 
           type="text"
           variant="outlined"
+          value={username}
           onChange={(e) => setUsername(e.target.value)}
            />
           <TextField 
@@ -57,6 +62,7 @@ function BasicModal() {
           label="Email" 
           type="email"
           variant="outlined"
+          value={email}
           onChange={(e) => setEmail(e.target.value)}
            />
           <TextField
@@ -64,6 +70,7 @@ function BasicModal() {
             label="Password"
             type="password"
             autoComplete="current-password"
+            value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
           </center>
