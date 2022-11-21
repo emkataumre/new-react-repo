@@ -4,6 +4,7 @@ import { Avatar } from '@mui/material'
         function Post({username, caption, imageUrl}) {
             //Props above
             return (
+                //----------------------Post structure---------------------//
              <div className='post'>
                 <div>
                     <Avatar 
