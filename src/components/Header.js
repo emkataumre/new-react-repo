@@ -60,7 +60,11 @@ function BasicModal() {
         
     return (
         <div>
-        <Button onClick={handleOpen}>Sign up</Button>
+            {user ? (
+                <Button onClick={handleOpen}>Log out</Button>
+            ): (
+                <Button onClick={handleOpen}>Sign up</Button>
+            )}
         <form>
           <Modal
             open={open}
@@ -97,8 +101,12 @@ function BasicModal() {
             onChange={(e) => setPassword(e.target.value)}
           />
           </center>
-          <center>
-          <Button onClick={signUp} type="submit">Sign up</Button>
+          <center> 
+              {user ? (
+              <Button onClick={signUp} type="submit">Log out</Button>
+            ): (
+              <Button onClick={signUp} type="submit">Sign up</Button>
+            )}
           </center>
             </Box> 
           </Modal>
