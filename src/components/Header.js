@@ -33,8 +33,35 @@ function BasicModal() {
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    
+    const [user, setUser] = useState(null);
 
+    useEffect(()=> {
+        const unsubscribe = auth.onAuthStateChanged((authUser) => {
+            if (authUser) {
+                //user logged in
+                console.log(authUser);
+                setUser(authUser);
+                
+                if(authUser.displayName) {
+                    //if user already has a displayname, dont update it
+                } else {
+                    //if they are a new user
+                    return authUser.updateProfile({
+                        displayName: username,
+                    });
+                }
+            } else {
+                //user logged out 
+                setUser(null);
+            }
+
+            return () => {
+                unsubscribe();
+            }
+            
+        }, [user, username])
+    })
+        
     return (
         <div>
         <Button onClick={handleOpen}>Sign up</Button>
