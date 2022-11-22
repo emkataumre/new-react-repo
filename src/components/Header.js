@@ -61,7 +61,7 @@ function BasicModal() {
     return (
         <div>
             {user ? (
-                <Button onClick={handleOpen}>Log out</Button>
+                <Button onClick={() => auth.signOut()}>Log out</Button>
             ): (
                 <Button onClick={handleOpen}>Sign up</Button>
             )}
