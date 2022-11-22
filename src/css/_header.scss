@@ -7,15 +7,11 @@ header {
     nav { 
         @include flex (space-between, center, row);
         ul {
-            @include flex (space-around, center, row);
             list-style: none;
-            li a img {
-                width: 1.5rem;
-                margin-right: 1.5rem;
-            }
-            li a:hover,
-            li a div:hover {
-                cursor: pointer;
+            li {
+                div {
+                    @include flex (space-between,center,row)
+                }
             }
         }
         input { 

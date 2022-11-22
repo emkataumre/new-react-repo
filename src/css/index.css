@@ -25,19 +25,13 @@ header nav {
   flex-direction: row;
 }
 header nav ul {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  flex-direction: row;
   list-style: none;
 }
-header nav ul li a img {
-  width: 1.5rem;
-  margin-right: 1.5rem;
-}
-header nav ul li a:hover,
-header nav ul li a div:hover {
-  cursor: pointer;
+header nav ul li div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
 }
 header nav input {
   width: 20%;
