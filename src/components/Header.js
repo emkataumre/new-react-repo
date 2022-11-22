@@ -9,7 +9,7 @@ function BasicModal() {
 
     const signUp = (event) => {
         event.preventDefault(); //Dont refresh on button press
-        
+
         auth
         .createUserWithEmailAndPassword(email, password) //email and password from the state
         .then((authUser) => {
@@ -18,6 +18,16 @@ function BasicModal() {
             })
         })
         .catch((error) => alert(error.message)) //if there is an error, catch it and show the error message in an alert
+        setOpen(false); //close the modal on sign in
+    }
+
+    const signIn = (event) => {
+        event.preventDefault();
+
+        auth
+        .signInWithEmailAndPassword(email, password)
+        .catch((error) => alert(error.message)) //if there is an error, catch it and show the error message in an alert
+        setOpenSignIn(false); //close the modal on sign in   
     }
 
     const style = {
@@ -35,6 +45,7 @@ function BasicModal() {
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
+    const [openSignIn, setOpenSignIn] = useState(false);
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -63,8 +74,14 @@ function BasicModal() {
             {user ? (
                 <Button onClick={() => auth.signOut()}>Log out</Button>
             ): (
-                <Button onClick={handleOpen}>Sign up</Button>
+                <div>
+                    <Button onClick={() => setOpenSignIn(true)}>Sign in</Button>
+                    <Button onClick={handleOpen}>Sign up</Button>
+                </div>
             )}
+
+                {/* Sign up modal */}
+
         <form>
           <Modal
             open={open}
@@ -103,9 +120,50 @@ function BasicModal() {
           </center>
           <center> 
               {user ? (
-              <Button onClick={signUp} type="submit">Log out</Button>
+              <Button onClick={() => auth.signOut()}>Log out</Button>
             ): (
               <Button onClick={signUp} type="submit">Sign up</Button>
+            )}
+          </center>
+            </Box> 
+          </Modal>
+        </form>
+
+            {/* Sign in modal */}
+
+        <form>
+          <Modal
+            open={openSignIn}
+            onClose={() => setOpenSignIn(false)}
+          >
+            <Box sx={style}>
+          <center>
+            <img src={require('../img/logo.png')}>
+            </img>
+          </center>
+          <center>
+          <TextField 
+          className="outlined-basic" 
+          label="Email" 
+          type="email"
+          variant="outlined"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+           />
+          <TextField
+            id="outlined-password-input"
+            label="Password"
+            type="password"
+            autoComplete="current-password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+          </center>
+          <center> 
+              {user ? (
+              <Button onClick={() => auth.signOut()}>Log out</Button>
+            ): (
+              <Button onClick={signIn} type="submit">Sign in</Button>
             )}
           </center>
             </Box> 
