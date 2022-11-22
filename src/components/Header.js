@@ -5,6 +5,7 @@ import Modal from '@mui/material/Modal';
 import TextField from '@mui/material/TextField';
 import {auth} from './../firebase.js';
 
+
 function BasicModal() {
 
     const signUp = (event) => {
@@ -45,6 +46,7 @@ function BasicModal() {
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
+const [openUpload, setOpenUpload] = useState(false);
     const [openSignIn, setOpenSignIn] = useState(false);
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
@@ -78,8 +80,7 @@ function BasicModal() {
                     <Button onClick={() => setOpenSignIn(true)}>Sign in</Button>
                     <Button onClick={handleOpen}>Sign up</Button>
                 </div>
-            )}
-
+            )}            
                 {/* Sign up modal */}
 
         <form>
@@ -122,7 +123,7 @@ function BasicModal() {
               {user ? (
               <Button onClick={() => auth.signOut()}>Log out</Button>
             ): (
-              <Button onClick={signUp} type="submit">Sign up</Button>
+              <Button onClick={signUp} type="submit">Sign in</Button>
             )}
           </center>
             </Box> 
@@ -169,6 +170,31 @@ function BasicModal() {
             </Box> 
           </Modal>
         </form>
+
+        <Button onClick={() => setOpenUpload(true)}>Upload</Button>
+            <Modal
+             open={openUpload}
+             onClose={() => setOpenUpload(false)}
+            >
+            <Box sx={style}>
+            <center>
+            <img src={require('../img/logo.png')}>
+            </img>
+            </center>
+            <center>
+            <TextField 
+            className="outlined-basic" 
+            label="Username" 
+            type="text"
+            variant="outlined"
+            />
+            </center>
+            <center> 
+            <Button>Open</Button>
+            </center>
+            </Box> 
+            </Modal>
+
       </div>
     )
   }

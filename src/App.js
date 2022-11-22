@@ -3,6 +3,8 @@ import './css/index.css';
 import {Header} from './components/Header';
 import {Post} from './components/Posts';
 import {db} from './firebase';
+import ImageUpload from "./components/ImageUpload";
+
 function App() {
   useEffect(() => {
   db.collection('posts') //'posts' here refers to my collection on firebase that is called 'posts'
