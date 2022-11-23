@@ -4,6 +4,7 @@ import Button from '@mui/material/Button';
 import Modal from '@mui/material/Modal';
 import TextField from '@mui/material/TextField';
 import {auth} from './../firebase.js';
+import ImageUpload from './ImageUpload.js';
 
 
 function BasicModal() {
@@ -31,6 +32,10 @@ function BasicModal() {
         setOpenSignIn(false); //close the modal on sign in   
     }
 
+    const handleUpload = () => {
+        
+    }
+
     const style = {
         position: 'absolute',
         top: '50%',
@@ -46,7 +51,7 @@ function BasicModal() {
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
-const [openUpload, setOpenUpload] = useState(false);
+    const [openUpload, setOpenUpload] = useState(false);
     const [openSignIn, setOpenSignIn] = useState(false);
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
@@ -182,10 +187,10 @@ const [openUpload, setOpenUpload] = useState(false);
             </img>
             </center>
             <center>
-                {/* uploader and caption goes here */}
+                <ImageUpload/>
             </center>
             <center> 
-            <Button>Upload</Button>
+            <Button onClick={handleUpload}>Upload</Button>
             </center>
             </Box> 
             </Modal>
