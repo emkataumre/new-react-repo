@@ -3,7 +3,7 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Modal from '@mui/material/Modal';
 import TextField from '@mui/material/TextField';
-import {auth} from './../firebase.js';
+import {auth, storage} from './../firebase.js';
 import ImageUpload from './ImageUpload.js';
 
 
@@ -32,10 +32,6 @@ function BasicModal() {
         setOpenSignIn(false); //close the modal on sign in   
     }
 
-    const handleUpload = () => {
-        
-    }
-
     const style = {
         position: 'absolute',
         top: '50%',
@@ -57,6 +53,23 @@ function BasicModal() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [user, setUser] = useState(null);
+    const [progress, setProgress] = useState(0);
+
+    const handleUpload = () => {
+        const uploadTask = storage.ref(`images/${image.name}`).put(image);
+        //storage.ref = access the storage and get a reference
+        //images/${image.name} = image folder, image.name is the name of the file on the local machine;
+        //.put(image) put the image that is grabbed into the storage of firebase
+        uploadTask.on(
+            "state_Changed",
+            (snapshot) => { //tracks progress 
+                Math.round(
+                    (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+                );
+                setProgress(progress);
+            }
+        )
+    }
 
     useEffect(()=> {
         const unsubscribe = auth.onAuthStateChanged((authUser) => {
