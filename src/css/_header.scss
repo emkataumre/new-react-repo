@@ -14,14 +14,6 @@ header {
                 }
             }
         }
-        input { 
-            width: 20%;
-            padding-left: .5rem;
-            border: none;
-            height: 1.3rem;
-            border-radius: .25vh;
-            border: 1px solid $grey;
-        }
     }
     
 }
@@ -50,3 +42,12 @@ body > div.MuiModal-root.css-79ws1d-MuiModal-root > div.MuiBox-root.css-1wnsr1i 
    }
 }
 
+body > div.MuiModal-root.css-79ws1d-MuiModal-root > div.MuiBox-root.css-1wnsr1i {
+    @include flex (center,center, column);
+    center:nth-child(2) > div {
+    @include flex (center,center, column);
+    input,progress,button {
+        margin: .5rem 0;
+    }
+    }
+}

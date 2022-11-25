@@ -33,14 +33,6 @@ header nav ul li div {
   align-items: center;
   flex-direction: row;
 }
-header nav input {
-  width: 20%;
-  padding-left: 0.5rem;
-  border: none;
-  height: 1.3rem;
-  border-radius: 0.25vh;
-  border: 1px solid #808080;
-}
 
 #logo__img {
   width: 6rem;
@@ -63,6 +55,22 @@ body > div.MuiModal-root.css-79ws1d-MuiModal-root > div.MuiBox-root.css-1wnsr1i 
   margin: 0.5rem 0;
 }
 
+body > div.MuiModal-root.css-79ws1d-MuiModal-root > div.MuiBox-root.css-1wnsr1i {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+body > div.MuiModal-root.css-79ws1d-MuiModal-root > div.MuiBox-root.css-1wnsr1i center:nth-child(2) > div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+body > div.MuiModal-root.css-79ws1d-MuiModal-root > div.MuiBox-root.css-1wnsr1i center:nth-child(2) > div input, body > div.MuiModal-root.css-79ws1d-MuiModal-root > div.MuiBox-root.css-1wnsr1i center:nth-child(2) > div progress, body > div.MuiModal-root.css-79ws1d-MuiModal-root > div.MuiBox-root.css-1wnsr1i center:nth-child(2) > div button {
+  margin: 0.5rem 0;
+}
+
 .post {
   background-color: #fff;
   max-width: 50rem;
@@ -80,6 +88,9 @@ body > div.MuiModal-root.css-79ws1d-MuiModal-root > div.MuiBox-root.css-1wnsr1i 
      object-fit: contain;
 }
 .post h4 {
+  font-weight: normal;
+}
+.post h3 {
   font-weight: normal;
 }
 .post div {

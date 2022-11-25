@@ -3,18 +3,17 @@ import './css/index.css';
 import {Header} from './components/Header';
 import {Post} from './components/Posts';
 import {db} from './firebase';
-import ImageUpload from "./components/ImageUpload";
 
 function App() {
   useEffect(() => {
   db.collection('posts') //'posts' here refers to my collection on firebase that is called 'posts'
-  .onSnapshot(snapshot => {
+  .orderBy('timestamp', 'desc').onSnapshot(snapshot => {
     setPosts(snapshot.docs.map(doc => ({
       id: doc.id,
       post: doc.data()})));
   }) //onSnapshot will fire every time a change happens in the 'posts' collection
   
-  }, []); //Currently runs once on refresh
+  }, []); //Currently runs once on load
 
 const [posts, setPosts] = useState([]);
 

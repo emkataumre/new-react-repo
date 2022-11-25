@@ -3,7 +3,7 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Modal from '@mui/material/Modal';
 import TextField from '@mui/material/TextField';
-import {auth, storage} from './../firebase.js';
+import {auth} from './../firebase.js';
 import ImageUpload from './ImageUpload.js';
 
 
@@ -47,35 +47,18 @@ function BasicModal() {
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
-    const [openUpload, setOpenUpload] = useState(false);
     const [openSignIn, setOpenSignIn] = useState(false);
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [user, setUser] = useState(null);
-    const [progress, setProgress] = useState(0);
-
-    const handleUpload = () => {
-        const uploadTask = storage.ref(`images/${image.name}`).put(image);
-        //storage.ref = access the storage and get a reference
-        //images/${image.name} = image folder, image.name is the name of the file on the local machine;
-        //.put(image) put the image that is grabbed into the storage of firebase
-        uploadTask.on(
-            "state_Changed",
-            (snapshot) => { //tracks progress 
-                Math.round(
-                    (snapshot.bytesTransferred / snapshot.totalBytes) * 100
-                );
-                setProgress(progress);
-            }
-        )
-    }
+    const [openUpload, setOpenUpload] = useState(false);
 
     useEffect(()=> {
         const unsubscribe = auth.onAuthStateChanged((authUser) => {
             if (authUser) {
                 //user logged in
-                console.log(authUser);
+                // console.log(authUser);
                 setUser(authUser);
             } else {
                 //user logged out 
@@ -92,7 +75,11 @@ function BasicModal() {
     return (
         <div>
             {user ? (
-                <Button onClick={() => auth.signOut()}>Log out</Button>
+              <div>
+                <Button onClick={() => auth.signOut()}>Sign out</Button>
+                <Button onClick={() => setOpenUpload(true)}>Upload</Button>
+              </div>
+              
             ): (
                 <div>
                     <Button onClick={() => setOpenSignIn(true)}>Sign in</Button>
@@ -138,11 +125,7 @@ function BasicModal() {
           />
           </center>
           <center> 
-              {user ? (
-              <Button onClick={() => auth.signOut()}>Log out</Button>
-            ): (
               <Button onClick={signUp} type="submit">Sign in</Button>
-            )}
           </center>
             </Box> 
           </Modal>
@@ -179,39 +162,36 @@ function BasicModal() {
           />
           </center>
           <center> 
-              {user ? (
-              <Button onClick={() => auth.signOut()}>Log out</Button>
-            ): (
               <Button onClick={signIn} type="submit">Sign in</Button>
-            )}
           </center>
             </Box> 
           </Modal>
         </form>
-
-        <Button onClick={() => setOpenUpload(true)}>Upload</Button>
-            <Modal
-             open={openUpload}
-             onClose={() => setOpenUpload(false)}
-            >
+        <Modal
+            open={openUpload}
+            onClose={() => setOpenUpload(false)}
+          >
             <Box sx={style}>
-            <center>
+          <center>
             <img src={require('../img/logo.png')}>
             </img>
-            </center>
-            <center>
-                <ImageUpload/>
-            </center>
-            <center> 
-            <Button onClick={handleUpload}>Upload</Button>
-            </center>
+          </center>
+          <center>
+          {user?.displayName ? (
+        <ImageUpload username = {user.displayName}/>
+       ) : (
+        <p>please log in to upload</p>
+       )}
+          </center>
+          <center> 
+          </center>
             </Box> 
-            </Modal>
-
+          </Modal>
+        <div>
+        </div> 
       </div>
     )
-  }
-
+}
   export {BasicModal};
 
 function Header() { 

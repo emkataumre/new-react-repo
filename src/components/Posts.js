@@ -1,6 +1,5 @@
 import React, {useState, useEffect} from 'react';
 import { Avatar } from '@mui/material'
-import {db, storage} from './../firebase.js';
 
         function Post({username, caption, imageUrl}) {
             //Props above
@@ -15,7 +14,7 @@ import {db, storage} from './../firebase.js';
                     <h3>{username}</h3>
                 </div>
                 <img src={imageUrl}></img>
-                <h3>{username}: {caption}</h3>
+                <h3><strong>{username}:</strong> {caption}</h3>
             </div>
             )
           }
